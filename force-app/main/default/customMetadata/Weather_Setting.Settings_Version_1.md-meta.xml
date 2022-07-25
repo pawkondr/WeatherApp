@@ -4,7 +4,7 @@
     <protected>false</protected>
     <values>
         <field>Endpoint__c</field>
-        <value xsi:type="xsd:string">http://api.weatherapi.com/v1/current.json</value>
+        <value xsi:type="xsd:string">http://api.weatherapi.com/v1/forecast.json</value>
     </values>
     <values>
         <field>Key__c</field>

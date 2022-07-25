@@ -15,7 +15,7 @@ public with sharing class WeatherService {
 
         Http httpProtocol = new Http();
         HttpRequest request = new HttpRequest();
-        request.setEndpoint(weatherSetting.Endpoint__c + '?q=' + query);
+        request.setEndpoint(weatherSetting.Endpoint__c + '?q=' + query + '&days=1');
         request.setMethod('GET');
         request.setHeader('key', weatherSetting.Key__c);
         request.setCompressed(false);

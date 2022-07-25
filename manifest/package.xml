@@ -47,5 +47,13 @@
         <members>Weather_Setting.Settings_Version_1</members>
         <name>CustomMetadata</name>
     </types>
+    <types>
+        <members>Home_Page_Default</members>
+        <name>FlexiPage</name>
+    </types>
+    <types>
+        <members>standard__Sales</members>
+        <name>CustomApplication</name>
+    </types>
     <version>55.0</version>
 </Package>

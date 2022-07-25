@@ -3,43 +3,52 @@
  */
 
 public with sharing class WeatherResponse {
-    public Location location;
-    public Current current;
+    @AuraEnabled public Location location;
+    @AuraEnabled public Forecast forecast;
+    @AuraEnabled public Error error;
     public class Location {
-        public String name;
-        public String region;
-        public String country;
-        public Double lat;
-        public Double lon;
-        public String tz_id;
-        public Integer localtime_epoch;
-        public String localtime;
+        @AuraEnabled public String name;
+        @AuraEnabled public String region;
+        @AuraEnabled public String country;
+        @AuraEnabled public Double lat;
+        @AuraEnabled public Double lon;
+        @AuraEnabled public String tz_id;
+        @AuraEnabled public Integer localtime_epoch;
+        @AuraEnabled public String localtime;
     }
-    public class Current {
-        public String last_updated;
-        public Double temp_c;
-        public Double temp_f;
-        public Condition condition;
-        public Double wind_mph;
-        public Double wind_kph;
-        public Double wind_degree;
-        public String wind_dir;
-        public Double pressure_mb;
-        public Double pressure_in;
-        public Double precip_mm;
-        public Double precip_in;
-        public Double humidity;
-        public Double cloud;
-        public Double feelslike_c;
-        public Double feelslike_f;
-        public Double vis_km;
-        public Double vis_miles;
-        public Double uv;
-        public Double gust_mph;
-        public Double gust_kph;
+    class Forecast {
+        @AuraEnabled public ForecastDay[] forecastDay;
+    }
+    class ForecastDay{
+        @AuraEnabled public Day day;
+    }
+    class Day {
+        @AuraEnabled public Double maxtemp_c;
+        @AuraEnabled public Double maxtemp_f;
+        @AuraEnabled public Double mintemp_c;
+        @AuraEnabled public Double mintemp_f;
+        @AuraEnabled public Double avgtemp_c;
+        @AuraEnabled public Double avgtemp_f;
+        @AuraEnabled public Double maxwind_mph;
+        @AuraEnabled public Double maxwind_kph;
+        @AuraEnabled public Double totalprecip_mm;
+        @AuraEnabled public Double totalprecip_in;
+        @AuraEnabled public Double avgvis_km;
+        @AuraEnabled public Double avgvis_miles;
+        @AuraEnabled public Double avghumidity;
+        @AuraEnabled public Double daily_will_it_rain;
+        @AuraEnabled public Double daily_chance_of_rain;
+        @AuraEnabled public Double daily_will_it_snow;
+        @AuraEnabled public Double daily_chance_of_snow;
+        @AuraEnabled public Condition condition;
+        @AuraEnabled public Double uv;
     }
     public class Condition {
-        public String text;
-        public String icon;
+        @AuraEnabled public String text;
+        @AuraEnabled public String icon;
+    }
+    public class Error {
+        @AuraEnabled public String message;
+        @AuraEnabled public Integer code;
     }
 }

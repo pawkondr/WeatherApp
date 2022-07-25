@@ -4,5 +4,99 @@
 
 <!-- Weather Widget -->
 <template>
-    Twoja stara
+    <div class=slds-card>
+        <div class=slds-card__header>
+            <span class="slds-text-heading_small">Weather widget</span>
+            <div class="slds-m-around_medium">
+                <p class="slds-m-bottom_small">
+                    <lightning-input type="number" class="slds-m-bottom_small" label="Enter US zip code"
+                                     max-length=5></lightning-input>
+                    <lightning-button label="Get Forecast" onclick={handleGetWeather}></lightning-button>
+                </p>
+            </div>
+        </div>
+        <div class=slds-card__body>
+            <template if:true={weather}>
+                <div class="slds-form-element">
+                    <label class="slds-checkbox_toggle slds-grid">
+                        <span class="slds-form-element__label slds-m-bottom_none">Units</span>
+                        <input type="checkbox" name="checkbox-toggle-18" value="checkbox-toggle-18"
+                               aria-describedby="checkbox-toggle-18"
+                               checked={isMetric} onchange={handleChange}/>
+                        <span id="checkbox-toggle-18" class="slds-checkbox_faux_container" aria-live="assertive">
+                                <span class="slds-checkbox_faux"></span>
+                                <span class="slds-checkbox_on">Metric</span>
+                                <span class="slds-checkbox_off">Imperial</span>
+                            </span>
+                    </label>
+                </div>
+                <table class="slds-table slds-table_cell-buffer slds-table_header-hidden">
+                    <tr>
+                        <td><img src={weather.condition.icon}></td>
+                        <td>{location.name}, {location.region}</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <template if:true={isMetric}>{weather.avgtemp_c}</template>
+                            <template if:false={isMetric}>{weather.avgtemp_f}</template>
+                            {units.heat}
+                        </td>
+                        <td>{weather.condition.text}</td>
+                    </tr>
+                    <tr>
+                        <td>Max temperature:</td>
+                        <td>
+                            <template if:true={isMetric}>{weather.maxtemp_c}</template>
+                            <template if:false={isMetric}>{weather.maxtemp_f}</template>
+                            {units.heat}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Min temperature:</td>
+                        <td>
+                            <template if:true={isMetric}>{weather.mintemp_c}</template>
+                            <template if:false={isMetric}>{weather.mintemp_f}</template>
+                            {units.heat}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Max wind speed:</td>
+                        <td>
+                            <template if:true={isMetric}>{weather.maxwind_kph}</template>
+                            <template if:false={isMetric}>{weather.maxwind_mph}</template>
+                            {units.speed}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Chance for rain:</td>
+                        <td>{weather.daily_chance_of_rain}%</td>
+                    </tr>
+                    <tr>
+                        <td>Total precipitation:</td>
+                        <td>
+                            <template if:true={isMetric}>{weather.totalprecip_mm}</template>
+                            <template if:false={isMetric}>{weather.totalprecip_in}</template>
+                            {units.smallDistance}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Humidity:</td>
+                        <td>{weather.avghumidity}%</td>
+                    </tr>
+                    <tr>
+                        <td>Visibility:</td>
+                        <td>
+                            <template if:true={isMetric}>{weather.avgvis_km}</template>
+                            <template if:false={isMetric}>{weather.avgvis_miles}</template>
+                            {units.distance}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>UV Index:</td>
+                        <td>{weather.uv}</td>
+                    </tr>
+                </table>
+            </template>
+        </div>
+    </div>
 </template>
