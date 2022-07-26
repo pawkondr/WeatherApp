@@ -1,3 +1,23 @@
 /**
  * Created by pawko on 25.07.2022.
  */
+
+td {
+    width: 50%;
+}
+
+.condition-text {
+    font-style: italic;
+}
+
+.location-text {
+    font-weight: bold;
+}
+
+.font-size-18 {
+    font-size: 18px;
+}
+
+.padding-rem {
+    padding: 1rem;
+}

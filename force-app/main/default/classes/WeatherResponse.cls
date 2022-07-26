@@ -16,13 +16,13 @@ public with sharing class WeatherResponse {
         @AuraEnabled public Integer localtime_epoch;
         @AuraEnabled public String localtime;
     }
-    class Forecast {
+    public class Forecast {
         @AuraEnabled public ForecastDay[] forecastDay;
     }
-    class ForecastDay{
+    public class ForecastDay{
         @AuraEnabled public Day day;
     }
-    class Day {
+    public class Day {
         @AuraEnabled public Double maxtemp_c;
         @AuraEnabled public Double maxtemp_f;
         @AuraEnabled public Double mintemp_c;

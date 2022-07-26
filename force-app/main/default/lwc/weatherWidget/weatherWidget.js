@@ -13,26 +13,31 @@ export default class WeatherWidget extends LightningElement {
     error;
 
     units = {
-        heat:'',
-        speed:'',
-        distance:'',
-        smallDistance:''
+        heat: '',
+        speed: '',
+        distance: '',
+        smallDistance: ''
     }
-    handleGetWeather(){
-        this.searchKey = this.template.querySelector('lightning-input').value;
+
+    handleGetWeather() {
+        let inputField = this.template.querySelector('lightning-input');
+        if (!inputField.validity.valid) return;
+        this.searchKey = inputField.value;
         getWeather({query: this.searchKey})
             .then((result) => {
+                this.error = null;
                 this.location = result.location;
                 this.weather = result.forecast.forecastDay[0].day;
-                this.error = result.error;
                 this.setUnits();
-                console.log(this.location);
-                console.log(this.weather);
-                console.log(this.error);
+            })
+            .catch((error) => {
+                this.error = error.body.message;
+                this.location = null;
+                this.weather = null;
             })
     }
 
-    setUnits(){
+    setUnits() {
         this.units.heat = this.isMetric ? '°C' : '°F';
         this.units.speed = this.isMetric ? 'km/h' : 'MPH';
         this.units.distance = this.isMetric ? 'km' : 'Miles';
@@ -43,5 +48,4 @@ export default class WeatherWidget extends LightningElement {
         this.isMetric = event.target.checked;
         this.setUnits();
     }
-
 }
